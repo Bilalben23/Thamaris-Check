@@ -1,0 +1,222 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    letter-spacing: 5px;
+    margin-bottom: 8px;
+    margin-top: 20px;
+}
+
+img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    box-shadow: 1px 1px 1px 1px white, -1px -1px 1px 1px white;
+}
+
+input {
+    width: 60px;
+    height: 40px;
+    background-color: #eee;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    text-align: center;
+    background-blend-mode: screen;
+    font-weight: 600;
+}
+
+table,
+th,
+td {
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid white;
+    border-collapse: collapse;
+}
+
+td {
+    padding: 5px;
+    text-align: center;
+}
+
+td div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+section table {
+    margin: auto;
+    width: 50%;
+    text-align: center;
+}
+
+section table span {
+    text-shadow: 4px 4px 3px black;
+    letter-spacing: 1px;
+}
+
+section {
+    width: 100%;
+    background: url('images/drinks-bg.jpg') no-repeat center center fixed ;
+    background-size: cover;
+    color: white;
+    padding: 10px 0 50px;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+table input.check[type="checkbox"] {
+    width: 40px;
+    height: 40px;
+    margin-left: 15px;
+    accent-color: green;
+    box-shadow: 1px 1px 10px 1px gray;
+}
+
+section button {
+    display: block;
+    margin: 10px auto;
+    padding: 15px 3px;
+    width: 30.5%;
+    border: none;
+    border-radius: 25px;
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+    box-shadow: 1px 1px 3px 2px white ;
+    transition: 0.7s;
+}
+
+.btns {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+section #printcheck {
+    width: 40%;
+    background-color: #213363;
+    margin-top: 20px;
+}
+
+section button:hover {
+    transform: scale(0.98);
+    box-shadow: none;
+}
+
+
+section #btn1 {
+    background-color: green;
+}
+
+section #btn2 {
+    background-color: #DD58D6;
+}
+
+
+#total {
+    position: fixed;
+    bottom: 0;
+    padding: 25px 0;
+    width:100%;
+    background-color: #090580;
+    text-align: center;
+    color: white;
+    transform: translate(-100%);
+    text-shadow: 1px 1px 1px gray;
+    font-size: 1.1em;
+    
+}
+
+#total span {
+    font-weight: bold;
+    text-shadow: 1px 1px 3px black;
+    letter-spacing: 1px;
+    color: #F24C3D
+}
+
+#mytable, #mytable th, #mytable td {
+    border: 1px dashed black;
+    border-collapse: collapse;
+}
+
+#ch {
+    display: none;
+}
+
+#lbl {
+    position: fixed;
+    top: 0;
+    z-index: 20;
+    padding: 15px;
+    cursor: pointer;
+    margin: 30px;
+}
+
+#menu div {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  width: 45%;
+  height: auto;
+  background-color: rgb(14 41 84 / 90%);
+  padding: 15px 0;
+  font-size: 0.8em;
+  border-top-right-radius: 10%;
+  border-bottom-left-radius: 10%;
+  box-shadow: 1px 1px 3px 1px white inset;
+  z-index: 2;
+}
+
+#menu-price table, #menu-price th, #menu-price td {
+    border: 2px dashed white;
+}
+
+#menu-price legend {
+    text-align: center;
+    margin-bottom: 2px;
+    text-shadow: 1px 1px 1px black;
+}
+
+#menu-price td, #menu-price th {
+    padding: 15px 5px;
+}
+
+#menu-price {
+    width: 80%;
+    transition: 0.7s;
+    transform: translate(-100%)
+}
+
+#menu-price table {
+    width: 80%;
+}
+
+#checkinfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px auto 20px;
+    background-color: rgb(79 112 156 / 70%);
+    padding: 10px;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+#guestName {
+    margin-bottom: 10px;
+}
+
+#checkinfo input {
+    width: 180px;
+    font-weight: 600;
+}

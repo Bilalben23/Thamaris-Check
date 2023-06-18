@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+  <section>
+    <h1>The Check</h1>
+    <div id="checkinfo">
+      <label for="guestName">Quest Name:</label>
+      <input type="text" id="guestName">
+      <label for="tableNumber">Table Number:</label>
+      <input type="text" id="tableNumber">
+    </div>
+    <div id="menu">
+      <label for="ch" id="lbl"><i class="fa-solid fa-ellipsis-vertical fa-2xl" id="lbl-i"></i></label>
+      <input type="checkbox" id="ch">
+      <div id="menu-price">
+        <table>
+          <legend>Menu Prices</legend>
+          <tr>
+            <th>Drink</th>
+            <th>Price</th>
+          </tr>
+          <tr>
+            <td>Coffee</td>
+            <td>13 Dh</td>
+          </tr>
+          <tr>
+            <td>Tea</td>
+            <td>11 Dh</td>
+          </tr>
+          <tr>
+            <td>Chocolate</td>
+            <td>11 Dh</td>
+          </tr>
+          <tr>
+            <td>Orange Juice</td>
+            <td>20 Dh</td>
+          </tr>
+          <tr>
+            <td>Fruit Juice</td>
+            <td>25 Dh</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <form action="#" autocomplete="off">
+      <table>
+        <tr>
+          <th>Drink</th>
+          <th>Quantity</th>
+        </tr>
+        <tr>
+          <td>
+            <img src="images/coff1.jpg" alt="coffee" /><br />
+            <span>Coffee</span>
+          </td>
+          <td>
+            <div>
+              <input type="text" name="num" aria-label="coffee-check" min="1" max="20" disabled />
+              <input type="checkbox" aria-label="coffee-quantity" class="check" />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <img src="images/tea.jpg" alt="tea" /><br />
+            <span>Tea</span>
+          </td>
+          <td>
+            <div>
+              <input type="text" name="num" aria-label="tea-check" min="1" max="20" disabled />
+              <input type="checkbox" aria-label="tea-quantity" class="check" />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <img src="images/chocolate.jpg" alt="chocolate" /><br />
+            <span>Chocolate</span>
+          </td>
+          <td>
+            <div>
+              <input type="text" name="num" aria-label="chocolate-check" disabled min="1" max="20" />
+              <input type="checkbox" aria-label="chocolate-quantity" class="check" />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <img src="images/orange-juice.png" alt="orange-juice" /><br />
+            <span>Orange Juice</span>
+          </td>
+          <td>
+            <div>
+              <input type="text" name="num" aria-label="orangeJuice-check" min="1" max="20" disabled />
+              <input type="checkbox" aria-label="orangeJuice-quantity" class="check" />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <img src="images/fruit-juice.jpg" alt="fruit-juice" /><br />
+            <span>Fruit Juice</span>
+          </td>
+          <td>
+            <div>
+              <input type="text" name="num" aria-label="coffee-check" min="1" max="20" disabled />
+              <input type="checkbox" aria-label="coffee-quantity" class="check" />
+            </div>
+          </td>
+        </tr>
+      </table>
+    </form>
+    <div class="btns">
+      <button type="button" id="btn1" onclick="btn1()">Total</button>
+      <button type="button" id="btn2">Reset</button>
+      <button type="button" id="printcheck">print The check</button>
+    </div>
+    <p id="total"> </p>
+  </section>
+
+
+  <script>
+    let inputs = document.forms[0].num;
+    let checkboxes = document.forms[0].getElementsByClassName("check");
+    let questName = document.getElementById("guestName");
+    let tableNumber = document.getElementById("tableNumber");
+    function check(input) {
+      let drinks = ["cups of coffee?", "cups of tea?", "glasses of chocolate?", "glasses of orange juice?", "glasses of fruit juice?"];
+      if (checkboxes[input].checked) {
+        inputs[input].removeAttribute("disabled");
+        inputs[input].focus();
+        inputs[input].title = `How much ${drinks[input]}`;
+      }
+      else {
+        inputs[input].setAttribute("disabled", "true");
+        inputs[input].value = "";
+
+      }
+    }
+    checkboxes[0].onclick = function () {
+      check(0)
+    }
+    for (let i = 0; i < inputs.length; i++) {
+      inputs[i].addEventListener("focusout", function () {
+        if (!Number.isInteger(+inputs[i].value) || inputs[i].value == "") {
+          inputs[i].value = ""
+          inputs[i].setAttribute("disabled", "disabled")
+          checkboxes[i].checked = false;
+        }
+      });
+    }
+
+    checkboxes[1].onclick = function () {
+      check(1)
+    }
+    checkboxes[2].onclick = function () {
+      check(2)
+    }
+    checkboxes[3].onclick = function () {
+      check(3)
+    }
+    checkboxes[4].onclick = function () {
+      check(4)
+    }
+
+    let paycheck = "";
+    function btn1() {
+      let drinks = ["Coffee", "Tea", "Chocolate", "Orange Juice", "Fruit Juice"]
+      let drinkPrices = [13, 11, 11, 20, 25];
+      let total = 0;
+      let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+      let date = new Date();
+      let d = `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()} H ${date.getHours() - 1}:${date.getMinutes()}`;
+      let text = `
+      <p style="text-align: center;"> 
+    ${d} <br/>
+      &nbsp; &#9632; Quest Name: ${questName.value[0].toUpperCase() + questName.value.slice(1)} <br/>
+      &nbsp; &#9632; Table Number: ${tableNumber.value}
+      </p>
+      <table style="border: 2px dashed black; border-collapse: collapse; margin: 20px auto; background-color: #eee"; id="mytable"> 
+        <tr>
+          <th style="border-bottom: 2px dashed black; border-collapse: collapse; border-right: 2px dashed black; padding: 5px;">Quantity</th>
+          <th style="border-bottom: 2px dashed black; border-collapse: collapse; border-right: 2px dashed black; padding: 5px;">Drink </th>
+          <th style="border-bottom: 2px dashed black; border-collapse: collapse; padding: 5px;">Drink_Total</th>
+        </tr>
+        `
+      for (let i = 0; i < inputs.length; i++) {
+        if (checkboxes[i].checked) {
+          total += (+inputs[i].value * drinkPrices[i]);
+          text += `
+           <tr> 
+            <td style="border: 2px dashed black; border-collapse: collapse;  text-align: center; padding: 5px;">${inputs[i].value}</td>
+              <td style="border: 2px dashed black; border-collapse: collapse; text-align: center; padding: 5px;">${drinks[i]}</td> 
+              <td style="border: 2px dashed black; border-collapse: collapse;  text-align: center; padding: 5px;">${inputs[i].value * drinkPrices[i]}</td>
+          </tr>`
+        }
+      }
+      text += `</table> <br/>
+      <a href="index.html" id="goBack" style="text-decoration: none; padding: 5px 10px; background-color: green; border-radius: 10px; color: white">Go Back</a> 
+  `
+      paycheck = text;
+      document.getElementById("total").style.transform = "translate(0)";
+      document.getElementById("total").style.transition = "1s";
+      document.getElementById("total").innerHTML = `The Total is: <span>${total}</span> DH`;
+      if (total === 0) {
+        colorizeTable("#F86F03")
+      }
+    }
+
+    document.getElementById("btn2").onclick = function () {
+      for (let i = 0; i < inputs.length; i++) {
+        inputs[i].value = "";
+        checkboxes[i].checked = false
+      }
+      document.getElementById("total").style.transform = "translate(-100%)";
+      window.scrollTo(0, 0);
+      document.getElementById("menu-price").style.transform = "translate(-100%)";
+      document.getElementById("lbl-i").style.color = "#fff";
+      colorizeTable("#fff")
+    }
+
+    document.getElementById("printcheck").onclick = function () {
+      document.getElementById("menu-price").style.transform = "translate(-100%)";
+      document.getElementById("lbl-i").style.color = "#fff";
+      document.getElementById("total").style.transform = "translate(-100%)";
+      let counter = 0;
+      for (let i = 0; i < inputs.length; i++) {
+        if (inputs[i].value !== "") {
+          counter++;
+        }
+      }
+      if (counter !== 0) {
+        if (questName.value == "" && tableNumber == "") {
+          questName.focus();
+          questName.style.backgroundColor = "#F86F03";
+          tableNumber.style.backgroundColor = "#F86F03";
+    
+        }
+        else if (questName.value == "") {
+          questName.focus();
+          questName.style.backgroundColor = "#F86F03";
+        }
+        else if (tableNumber.value == "") {
+          tableNumber.focus();
+          tableNumber.style.backgroundColor = "#F86F03";
+        }
+
+        else {
+          btn1();
+          document.write(paycheck);
+          document.getElementById("goBack").style.visibility = "hidden";
+          window.print();
+          document.getElementById("goBack").style.visibility = "visible";
+        }
+      } else {
+        alert("There's no check to print!")
+      }
+    }
+    document.getElementById("lbl").onclick = function () {
+      let ischecked = document.getElementById("ch").checked;
+      console.log(ischecked);
+      if (ischecked) {
+        document.getElementById("menu-price").style.transform = "translate(0)";
+        document.getElementById("lbl-i").style.color = "#E76161"
+
+      } else {
+        document.getElementById("menu-price").style.transform = "translate(-100%)";
+        document.getElementById("lbl-i").style.color = "#fff"
+      }
+    };
+    document.addEventListener("dblclick", function () {
+      document.getElementById("menu-price").style.transform = "translate(-100%)";
+      document.getElementById("lbl-i").style.color = "#fff"
+    });
+
+    function colorizeTable(color) {
+      let tble = document.querySelectorAll("table")[1];
+      console.log(tble);
+      tble.style.border = `2px solid ${color}`;
+      let ths = tble.querySelectorAll("th");
+      let tds = tble.querySelectorAll("td");
+      console.log(ths);
+      console.log(tds);
+      for (let th of ths) {
+        th.style.border = `2px solid ${color}`;
+      }
+      for (let td of tds) {
+        td.style.border = `2px solid ${color}`;
+      }
+    }
+
+    document.getElementById("guestName").addEventListener("focusout", function () {
+      document.getElementById("tableNumber").focus();
+    });
+    document.getElementById("guestName").addEventListener("focusin", function () {
+      questName.style.backgroundColor = "#fff";
+    });
+
+    document.getElementById("tableNumber").addEventListener("focusout", function () {
+      colorizeTable("#F86F03");
+    });
+    document.getElementById("tableNumber").addEventListener("focusin", function () {
+      questName.style.backgroundColor = "#eee";
+    });
+
+    for (inpt of inputs) {
+      inpt.addEventListener("focusin", function () {
+        colorizeTable("#fff");
+      })
+    }
+
+
+  </script>
+</body>
+
+</html>
